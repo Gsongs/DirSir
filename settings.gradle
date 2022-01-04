@@ -1,0 +1,10 @@
+rootProject.name = "Week_tow"
+include ':app'
+include ':home'
+include ':sort'
+include ':shop'
+include ':news'
+include ':mine'
+include ':library-bese'
+include ':library_mvp'
+include ':library-framework'

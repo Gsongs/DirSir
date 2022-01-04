@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/beijng2"
+    android:layout_height="match_parent">
+
+                <Button
+                    android:layout_marginLeft="@dimen/rc_margin_size_80"
+                    android:id="@+id/pingjia"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bottontab"
+                    android:gravity="center"
+                    android:text="确认收货"
+                    android:textColor="#707373"
+                    android:textSize="24dp"
+                    android:textStyle="bold"></Button>
+    <Button
+        android:id="@+id/quxiao"
+        android:layout_marginLeft="220dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bottontab"
+        android:gravity="center"
+        android:text="取消收货"
+        android:textColor="#707373"
+        android:textSize="24dp"
+        android:textStyle="bold"></Button>
+
+
+
+
+</RelativeLayout>

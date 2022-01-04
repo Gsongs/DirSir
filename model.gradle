@@ -1,0 +1,75 @@
+if (isBuildMode.toBoolean()) {
+    apply plugin: 'com.android.application'
+//判断isBuildMode为true可以单独运行  否则不可以
+} else {
+    apply plugin: 'com.android.library'
+}
+
+apply plugin: 'kotlin-android'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //第三步
+    sourceSets {
+//在不同的开发模式下就会读取到不同的 AndroidManifest.xml ，然后我们需要修改这两个表单的内容以为我们不同的开发模式服务。
+        main {
+            if (isBuildMode.toBoolean()) {
+
+                //jni库统一放在libs目录下
+                manifest.srcFile 'src/main/alone/androidManifest.xml'
+            } else {
+                //合并到宿主中
+                manifest.srcFile 'src/main/androidManifest.xml'
+            }
+            resources {
+
+                //正式版本时.剔除debug文件夹下的所有调式文件
+                exclude 'src/debug/*'
+            }
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation rootProject.ext.androidx["appcompat"]
+    implementation rootProject.ext.androidx["material"]
+    implementation rootProject.ext.androidx["constraintlayout"]
+    testImplementation rootProject.ext.androidx["junit"]
+    androidTestImplementation rootProject.ext.androidx["test.ext:junit"]
+    androidTestImplementation rootProject.ext.androidx["espresso"]
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+
+    api rootProject.ext.dependencies["arouter_api"]
+    annotationProcessor rootProject.ext.dependencies["artouter_compiler"] //ARouter依赖
+    api project(path: ':library_mvp')
+    api project(path: ':library-bese')
+}

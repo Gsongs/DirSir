@@ -1,0 +1,67 @@
+apply from:"../model.gradle"
+android {
+    defaultConfig {
+        //第二步
+        if (isBuildMode.toBoolean()) {
+            applicationId "com.bawei.home"
+        }
+    }
+}
+
+dependencies {
+
+    implementation rootProject.ext.androidx["appcompat"]
+    implementation project(path: ':sort')
+    implementation project(path: ':mine')
+    implementation rootProject.ext.androidx["material"]
+    implementation rootProject.ext.androidx["constraintlayout"]
+    testImplementation rootProject.ext.androidx["junit"]
+    androidTestImplementation rootProject.ext.androidx["test.ext:junit"]
+    androidTestImplementation rootProject.ext.androidx["espresso"]
+
+    implementation 'com.alibaba:arouter-api:1.5.1' //ARouter依赖
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.1' //ARouter依赖
+    api project(path: ':library_mvp')
+    api project(path: ':library-bese')
+    api project(path: ':library-framework')
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    //GSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    //recyclerview间隔线
+    implementation 'com.yanyusong.y_divideritemdecoration:y_divideritemdecoration:2.0'
+    //recyclerview动画
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+    //万能适配器
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.0'
+    //核心必须依赖
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    //经典刷新头
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.3'
+    //工具类
+    implementation 'com.blankj:utilcode:1.30.6'
+    //Glide图片框架
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //网络框架
+    api 'com.squareup.okhttp3:okhttp:3.12.1'
+    //日志拦截器
+    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    //网络请求封装框架
+    api 'com.squareup.retrofit2:retrofit:2.6.2'
+    //网络请求对象解析器
+    api 'com.squareup.retrofit2:converter-gson:2.6.2'
+    //线程异常任务调度
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.6.2'
+    //工具类
+    implementation 'com.blankj:utilcode:1.30.6'
+    //顶部导航
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //banner
+    implementation 'io.github.youth5201314:banner:2.2.2'
+    //广告垂直轮播
+    implementation 'com.superluo:textbannerview:1.0.2'  //最新版本
+
+    api 'com.github.shts:TriangleLabelView:1.1.2'
+    implementation 'com.tencent.liteav:LiteAVSDK_Smart:latest.release'
+}
